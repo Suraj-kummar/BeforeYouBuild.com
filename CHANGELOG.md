@@ -5,3 +5,4 @@
 ## [2026-04-05] - style: add focus ring styles for keyboard navigation
 ## [2026-04-06] - docs: clarify Supabase setup steps in SETUP.md
 ## [2026-04-07] - fix: ensure history timestamps display user timezone
+## [2026-04-08] - feat: add animated counter for report word count
