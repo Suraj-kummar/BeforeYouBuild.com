@@ -8,3 +8,4 @@
 ## [2026-04-08] - feat: add animated counter for report word count
 ## [2026-04-09] - chore: clean up redundant CSS variables
 ## [2026-04-10] - fix: resolve memory leak in report polling hook
+## [2026-04-11] - style: improve accessibility contrast ratios
