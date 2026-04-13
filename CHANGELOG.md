@@ -10,3 +10,4 @@
 ## [2026-04-10] - fix: resolve memory leak in report polling hook
 ## [2026-04-11] - style: improve accessibility contrast ratios
 ## [2026-04-12] - docs: add changelog to track version history
+## [2026-04-13] - feat: show free vs premium feature comparison table
