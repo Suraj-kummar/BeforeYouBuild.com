@@ -11,3 +11,4 @@
 ## [2026-04-11] - style: improve accessibility contrast ratios
 ## [2026-04-12] - docs: add changelog to track version history
 ## [2026-04-13] - feat: show free vs premium feature comparison table
+## [2026-04-14] - chore: add husky pre-commit hook for linting
