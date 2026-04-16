@@ -13,3 +13,4 @@
 ## [2026-04-13] - feat: show free vs premium feature comparison table
 ## [2026-04-14] - chore: add husky pre-commit hook for linting
 ## [2026-04-15] - fix: prevent flash of unstyled content on load
+## [2026-04-16] - feat: add search/filter to report history page
