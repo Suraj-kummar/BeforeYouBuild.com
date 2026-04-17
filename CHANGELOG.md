@@ -14,3 +14,4 @@
 ## [2026-04-14] - chore: add husky pre-commit hook for linting
 ## [2026-04-15] - fix: prevent flash of unstyled content on load
 ## [2026-04-16] - feat: add search/filter to report history page
+## [2026-04-17] - style: refine report section border radii
