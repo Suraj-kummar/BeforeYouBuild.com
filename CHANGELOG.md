@@ -15,3 +15,4 @@
 ## [2026-04-15] - fix: prevent flash of unstyled content on load
 ## [2026-04-16] - feat: add search/filter to report history page
 ## [2026-04-17] - style: refine report section border radii
+## [2026-04-18] - docs: add screenshots to README
