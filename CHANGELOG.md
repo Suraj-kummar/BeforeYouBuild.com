@@ -17,3 +17,4 @@
 ## [2026-04-17] - style: refine report section border radii
 ## [2026-04-18] - docs: add screenshots to README
 ## [2026-04-19] - fix: handle network timeout on AI report generation
+## [2026-04-20] - chore: configure prettier for consistent code style
