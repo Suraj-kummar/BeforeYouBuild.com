@@ -19,3 +19,4 @@
 ## [2026-04-19] - fix: handle network timeout on AI report generation
 ## [2026-04-20] - chore: configure prettier for consistent code style
 ## [2026-04-21] - feat: add confirmation dialog before deleting history
+## [2026-04-22] - style: improve skeleton loader animation timing
