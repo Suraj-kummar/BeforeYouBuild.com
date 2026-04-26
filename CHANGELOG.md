@@ -23,3 +23,4 @@
 ## [2026-04-23] - docs: add Stripe test card numbers to SETUP.md
 ## [2026-04-24] - fix: correct date formatting in history list
 ## [2026-04-25] - feat: add export-to-PDF button on report page
+## [2026-04-26] - chore: update Supabase client to v2 API
