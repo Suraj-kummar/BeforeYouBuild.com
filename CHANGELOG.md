@@ -25,3 +25,4 @@
 ## [2026-04-25] - feat: add export-to-PDF button on report page
 ## [2026-04-26] - chore: update Supabase client to v2 API
 ## [2026-04-27] - fix: resolve race condition in webhook processing
+## [2026-04-28] - style: add smooth scroll behavior to page
