@@ -27,3 +27,4 @@
 ## [2026-04-27] - fix: resolve race condition in webhook processing
 ## [2026-04-28] - style: add smooth scroll behavior to page
 ## [2026-04-29] - docs: add environment variable descriptions to README
+## [2026-04-30] - feat: display subscription status in profile menu
