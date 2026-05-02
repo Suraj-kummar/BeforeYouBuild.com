@@ -29,3 +29,4 @@
 ## [2026-04-29] - docs: add environment variable descriptions to README
 ## [2026-04-30] - feat: display subscription status in profile menu
 ## [2026-05-01] - fix: sanitize user input before storing in Supabase
+## [2026-05-02] - chore: split styles.css into component-level modules
