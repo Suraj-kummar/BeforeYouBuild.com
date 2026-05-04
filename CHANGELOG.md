@@ -31,3 +31,4 @@
 ## [2026-05-01] - fix: sanitize user input before storing in Supabase
 ## [2026-05-02] - chore: split styles.css into component-level modules
 ## [2026-05-03] - feat: add keyboard shortcut to open report history
+## [2026-05-04] - style: refine button active states
