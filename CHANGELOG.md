@@ -33,3 +33,4 @@
 ## [2026-05-03] - feat: add keyboard shortcut to open report history
 ## [2026-05-04] - style: refine button active states
 ## [2026-05-05] - docs: update contributing guidelines
+## [2026-05-06] - fix: resolve 401 error on unauthenticated API calls
