@@ -34,3 +34,4 @@
 ## [2026-05-04] - style: refine button active states
 ## [2026-05-05] - docs: update contributing guidelines
 ## [2026-05-06] - fix: resolve 401 error on unauthenticated API calls
+## [2026-05-07] - feat: persist scroll position on report page refresh
