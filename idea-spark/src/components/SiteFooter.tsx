@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Check, Github, Twitter } from "lucide-react";
+import { Twitter, Github } from "lucide-react";
 
 export function SiteFooter() {
   return (
@@ -8,14 +8,9 @@ export function SiteFooter() {
         <div className="flex flex-col md:flex-row items-start justify-between gap-10">
           {/* Brand */}
           <div className="space-y-3">
-            <div className="flex items-center gap-2.5">
-              <span className="grid h-7 w-7 place-items-center rounded-lg bg-gradient-emerald text-background">
-                <Check className="h-3.5 w-3.5" strokeWidth={3} />
-              </span>
-              <span className="font-display text-base font-bold">
-                Before<span className="text-gradient-emerald">You</span>Build
-              </span>
-            </div>
+            <Link to="/">
+              <img src="/logo.png" alt="BeforeYouBuild" className="h-7 w-auto object-contain" style={{ maxWidth: 180 }} />
+            </Link>
             <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
               AI-powered market validation for startup founders. Know before you build.
             </p>

@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Check, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 export function SiteNav() {
@@ -17,13 +17,13 @@ export function SiteNav() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 glass">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2.5 font-display text-lg font-bold tracking-tight">
-          <span className="relative grid h-8 w-8 place-items-center rounded-lg bg-gradient-emerald text-background shadow-glow-sm animate-pulse-glow">
-            <Check className="h-4 w-4" strokeWidth={3} />
-          </span>
-          <span>
-            Before<span className="text-gradient-emerald">You</span>Build
-          </span>
+        <Link to="/" className="flex items-center">
+          <img
+            src="/logo.png"
+            alt="BeforeYouBuild"
+            className="h-8 w-auto object-contain"
+            style={{ maxWidth: 200 }}
+          />
         </Link>
 
         {/* Desktop Nav */}
