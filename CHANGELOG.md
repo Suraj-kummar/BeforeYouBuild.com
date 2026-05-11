@@ -38,3 +38,4 @@
 ## [2026-05-08] - chore: add ESLint rule for no-unused-vars
 ## [2026-05-09] - fix: handle expired Stripe sessions gracefully
 ## [2026-05-10] - style: polish glassmorphism card styles
+## [2026-05-11] - docs: add FAQ section to SETUP.md
