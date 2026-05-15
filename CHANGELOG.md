@@ -42,3 +42,4 @@
 ## [2026-05-12] - feat: add progress bar while report is generating
 ## [2026-05-13] - fix: correct redirect after Stripe checkout success
 ## [2026-05-14] - chore: add .editorconfig for consistent formatting
+## [2026-05-15] - feat: lazy load report section images
