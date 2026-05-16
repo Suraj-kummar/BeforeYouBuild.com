@@ -43,3 +43,4 @@
 ## [2026-05-13] - fix: correct redirect after Stripe checkout success
 ## [2026-05-14] - chore: add .editorconfig for consistent formatting
 ## [2026-05-15] - feat: lazy load report section images
+## [2026-05-16] - style: increase font weight for report headings
