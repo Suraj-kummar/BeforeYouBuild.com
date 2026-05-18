@@ -45,3 +45,4 @@
 ## [2026-05-15] - feat: lazy load report section images
 ## [2026-05-16] - style: increase font weight for report headings
 ## [2026-05-17] - fix: guard against null user in history route
+## [2026-05-18] - docs: add architecture diagram to README
