@@ -48,3 +48,4 @@
 ## [2026-05-18] - docs: add architecture diagram to README
 ## [2026-05-19] - feat: show success toast after subscription upgrade
 ## [2026-05-20] - chore: bump vite to latest patch version
+## [2026-05-21] - fix: resolve hydration mismatch in report. route
