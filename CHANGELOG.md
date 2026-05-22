@@ -49,3 +49,4 @@
 ## [2026-05-19] - feat: show success toast after subscription upgrade
 ## [2026-05-20] - chore: bump vite to latest patch version
 ## [2026-05-21] - fix: resolve hydration mismatch in report. route
+## [2026-05-22] - style: add hover transitions to nav links
