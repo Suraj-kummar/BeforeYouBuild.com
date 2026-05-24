@@ -51,3 +51,4 @@
 ## [2026-05-21] - fix: resolve hydration mismatch in report. route
 ## [2026-05-22] - style: add hover transitions to nav links
 ## [2026-05-23] - feat: add 404 page for unknown report IDs
+## [2026-05-24] - chore: remove console.log statements from production code
