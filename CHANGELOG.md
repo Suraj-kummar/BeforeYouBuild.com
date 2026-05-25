@@ -52,3 +52,4 @@
 ## [2026-05-22] - style: add hover transitions to nav links
 ## [2026-05-23] - feat: add 404 page for unknown report IDs
 ## [2026-05-24] - chore: remove console.log statements from production code
+## [2026-05-25] - docs: document Supabase migration steps in SETUP.md
