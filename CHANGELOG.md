@@ -54,3 +54,4 @@
 ## [2026-05-24] - chore: remove console.log statements from production code
 ## [2026-05-25] - docs: document Supabase migration steps in SETUP.md
 ## [2026-05-26] - fix: ensure webhook signature verification logs errors
+## [2026-05-27] - feat: add copy-to-clipboard for shareable report link
