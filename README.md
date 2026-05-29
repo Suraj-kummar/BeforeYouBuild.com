@@ -123,7 +123,7 @@ VITE_SUPABASE_ANON_KEY=your-anon-key-here
 
 # Anthropic — from console.anthropic.com
 ANTHROPIC_API_KEY=sk-ant-your-key-here
-```
+```          
 
 ### 4. Run locally
 ```bash
