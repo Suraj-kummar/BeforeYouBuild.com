@@ -56,3 +56,4 @@
 ## [2026-05-26] - fix: ensure webhook signature verification logs errors
 ## [2026-05-27] - feat: add copy-to-clipboard for shareable report link
 ## [2026-05-28] - style: adjust spacing in SiteNav component
+## [2026-05-29] - fix: prevent duplicate history entries on reload
