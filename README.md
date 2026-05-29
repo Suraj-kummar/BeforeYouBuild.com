@@ -75,7 +75,7 @@ Every day, thousands of founders waste **months building products nobody wants**
 - **Google OAuth** via Supabase
 - **Magic Link** email login (no password needed)
 
----
+---            
 
 ## 🛠️ Tech Stack
 
