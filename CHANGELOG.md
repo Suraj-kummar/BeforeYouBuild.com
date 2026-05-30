@@ -57,3 +57,4 @@
 ## [2026-05-27] - feat: add copy-to-clipboard for shareable report link
 ## [2026-05-28] - style: adjust spacing in SiteNav component
 ## [2026-05-29] - fix: prevent duplicate history entries on reload
+## [2026-05-30] - chore: update .env.example with new Stripe keys
