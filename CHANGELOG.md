@@ -58,3 +58,4 @@
 ## [2026-05-28] - style: adjust spacing in SiteNav component
 ## [2026-05-29] - fix: prevent duplicate history entries on reload
 ## [2026-05-30] - chore: update .env.example with new Stripe keys
+## [2026-05-31] - feat: add fade-in animation to report sections
