@@ -60,3 +60,4 @@
 ## [2026-05-30] - chore: update .env.example with new Stripe keys
 ## [2026-05-31] - feat: add fade-in animation to report sections
 ## [2026-06-01] - docs: add inline comments to stripe.ts
+## [2026-06-02] - fix: correct Supabase RLS policy for history table
