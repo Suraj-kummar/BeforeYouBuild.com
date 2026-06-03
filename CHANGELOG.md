@@ -61,3 +61,4 @@
 ## [2026-05-31] - feat: add fade-in animation to report sections
 ## [2026-06-01] - docs: add inline comments to stripe.ts
 ## [2026-06-02] - fix: correct Supabase RLS policy for history table
+## [2026-06-03] - style: refine color palette for dark mode consistency
