@@ -62,3 +62,4 @@
 ## [2026-06-01] - docs: add inline comments to stripe.ts
 ## [2026-06-02] - fix: correct Supabase RLS policy for history table
 ## [2026-06-03] - style: refine color palette for dark mode consistency
+## [2026-06-04] - feat: add tooltip to paywall gate button
