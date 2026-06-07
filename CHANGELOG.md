@@ -65,3 +65,4 @@
 ## [2026-06-04] - feat: add tooltip to paywall gate button
 ## [2026-06-05] - chore: clean up unused imports across components
 ## [2026-06-06] - fix: handle edge case in Stripe webhook handler
+## [2026-06-07] - docs: update README with deployment instructions
