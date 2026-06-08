@@ -4,7 +4,7 @@ import { ArrowRight, Loader2, CheckCircle2, Sparkles, Zap, Lock } from "lucide-r
 import { SiteNav } from "@/components/SiteNav";
 import { validateIdea } from "@/lib/validate";
 import { useSubscription } from "@/hooks/useSubscription";
-import { supabase, getMonthlyUsageCount, FREE_TIER_LIMIT } from "@/lib/supabase";
+import { supabase, getMonthlyUsageCount, FREE_TIER_LIMIT, saveReport, recordValidationUsage } from "@/lib/supabase";
 
 export const Route = createFileRoute("/app")({
   head: () => ({ meta: [{ title: "Validate — BeforeYouBuild" }] }),
@@ -89,13 +89,26 @@ function AppPage() {
     try {
       const report = await validateIdea({ data: { idea } });
       sessionStorage.setItem("byb:report", JSON.stringify(report));
+      sessionStorage.removeItem("byb:reportId");
+
+      // Auto-save to Supabase if user is logged in
+      const { data: sessionData } = await supabase.auth.getSession();
+      const userId = sessionData.session?.user?.id;
+      if (userId) {
+        // Record usage for free-tier tracking
+        await recordValidationUsage(userId);
+        // Save report and store ID for shareable link
+        const reportId = await saveReport(userId, idea, report, report.verdict);
+        if (reportId) {
+          sessionStorage.setItem("byb:reportId", reportId);
+        }
+      }
+
       navigate({ to: "/report" });
     } catch (err) {
       console.error("Validation error:", err);
-      // If API key is missing, go to demo report
       const message = err instanceof Error ? err.message : "Unknown error";
       if (message.includes("ANTHROPIC_API_KEY") || message.includes("not configured")) {
-        // Use demo report for dev/preview without API key
         sessionStorage.removeItem("byb:report");
         navigate({ to: "/report" });
         return;

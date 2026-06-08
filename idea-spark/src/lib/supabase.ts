@@ -133,3 +133,91 @@ export async function hasExceededFreeLimit(userId: string): Promise<boolean> {
 }
 
 export { FREE_TIER_LIMIT };
+
+// ── Report save / history helpers ─────────────────────────────────────────────
+
+export interface SavedReport {
+  id: string;
+  idea: string;
+  verdict: "HOT" | "CAUTION" | "DEAD";
+  created_at: string;
+  is_public: boolean;
+}
+
+export interface SavedReportFull extends SavedReport {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  report: any;
+}
+
+/**
+ * Save a validation report to Supabase and return its shareable ID.
+ */
+export async function saveReport(
+  userId: string,
+  idea: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  report: any,
+  verdict: "HOT" | "CAUTION" | "DEAD"
+): Promise<string | null> {
+  const { data, error } = await supabase
+    .from("reports")
+    .insert({ user_id: userId, idea, report, verdict, is_public: true })
+    .select("id")
+    .single();
+
+  if (error) {
+    console.warn("[BeforeYouBuild] Could not save report:", error.message);
+    return null;
+  }
+  return data?.id ?? null;
+}
+
+/**
+ * Fetch a single public report by ID (for shareable links — no auth needed).
+ */
+export async function getReportById(id: string): Promise<SavedReportFull | null> {
+  const { data, error } = await supabase
+    .from("reports")
+    .select("id, idea, verdict, report, created_at, is_public")
+    .eq("id", id)
+    .eq("is_public", true)
+    .maybeSingle();
+
+  if (error) {
+    console.warn("[BeforeYouBuild] Could not fetch report:", error.message);
+    return null;
+  }
+  return data;
+}
+
+/**
+ * Fetch a user's report history (max 30, newest first).
+ */
+export async function getUserReports(
+  userId: string,
+  limit = 30
+): Promise<SavedReport[]> {
+  const { data, error } = await supabase
+    .from("reports")
+    .select("id, idea, verdict, created_at, is_public")
+    .eq("user_id", userId)
+    .order("created_at", { ascending: false })
+    .limit(limit);
+
+  if (error) {
+    console.warn("[BeforeYouBuild] Could not fetch reports:", error.message);
+    return [];
+  }
+  return data ?? [];
+}
+
+/**
+ * Delete a report (only the owner can do this via RLS).
+ */
+export async function deleteReport(id: string): Promise<void> {
+  const { error } = await supabase.from("reports").delete().eq("id", id);
+  if (error) {
+    console.warn("[BeforeYouBuild] Could not delete report:", error.message);
+  }
+}
+

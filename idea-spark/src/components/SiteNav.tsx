@@ -10,6 +10,7 @@ export function SiteNav() {
   const navLinks = [
     { to: "/", hash: "how", label: "How it works" },
     { to: "/pricing", hash: "", label: "Pricing" },
+    { to: "/history", hash: "", label: "My Reports" },
     { to: "/login", hash: "", label: "Login" },
   ];
 
