@@ -67,3 +67,4 @@
 ## [2026-06-06] - fix: handle edge case in Stripe webhook handler
 ## [2026-06-07] - docs: update README with deployment instructions
 ## [2026-06-08] - style: improve mobile responsiveness of nav bar
+## [2026-06-09] - feat: add loading skeleton for report page
