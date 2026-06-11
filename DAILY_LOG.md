@@ -58,3 +58,4 @@
 [56] style: refine report section border radii
 [57] feat: add search/filter to report history page
 [58] fix: prevent flash of unstyled content on load
+[59] chore: add husky pre-commit hook for linting
