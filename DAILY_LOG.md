@@ -45,3 +45,4 @@
 [43] feat: display subscription status in profile menu
 [44] docs: add environment variable descriptions to README
 [45] style: add smooth scroll behavior to page
+[46] fix: resolve race condition in webhook processing
