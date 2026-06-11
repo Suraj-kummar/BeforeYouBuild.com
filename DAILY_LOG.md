@@ -31,3 +31,4 @@
 [29] chore: add .editorconfig for consistent formatting
 [30] fix: correct redirect after Stripe checkout success
 [31] feat: add progress bar while report is generating
+[32] docs: add FAQ section to SETUP.md
