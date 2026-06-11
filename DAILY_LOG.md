@@ -33,3 +33,4 @@
 [31] feat: add progress bar while report is generating
 [32] docs: add FAQ section to SETUP.md
 [33] style: polish glassmorphism card styles
+[34] fix: handle expired Stripe sessions gracefully
