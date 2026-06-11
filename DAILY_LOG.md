@@ -11,3 +11,4 @@
 [9] style: refine color palette for dark mode consistency
 [10] fix: correct Supabase RLS policy for history table
 [11] docs: add inline comments to stripe.ts
+[12] feat: add fade-in animation to report sections
