@@ -21,17 +21,24 @@ function getStripeClient(): Stripe {
       "STRIPE_SECRET_KEY is not configured. Add it to .env.local — get it from dashboard.stripe.com → Developers → API keys"
     );
   }
-  return new Stripe(secret, { apiVersion: "2025-05-28.basil" });
+  return new Stripe(secret, { apiVersion: "2026-05-27.dahlia" });
 }
 
 // ── Supabase service-role client (for webhook writes) ─────────────────────────
 
 function getServiceSupabase() {
   const url = process.env.VITE_SUPABASE_URL ?? process.env.SUPABASE_URL ?? "";
-  const serviceKey =
-    process.env.SUPABASE_SERVICE_ROLE_KEY ??
-    process.env.VITE_SUPABASE_ANON_KEY ??
-    "";
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!serviceKey || serviceKey === "your-service-role-key") {
+    // In webhook context this is critical — anon key won't bypass RLS
+    throw new Error(
+      "[BeforeYouBuild] SUPABASE_SERVICE_ROLE_KEY is not configured. " +
+      "Webhook writes will fail if RLS is enabled on the subscriptions table. " +
+      "Get it from: Supabase Dashboard → Project Settings → API → service_role key."
+    );
+  }
+
   return createClient(url, serviceKey);
 }
 
@@ -180,7 +187,7 @@ async function handleCheckoutComplete(
       plan,
       status: "active",
       current_period_end: new Date(
-        stripeSub.current_period_end * 1000
+        (stripeSub.items.data[0]?.current_period_end ?? 0) * 1000
       ).toISOString(),
     },
     { onConflict: "user_id" }
@@ -203,7 +210,7 @@ async function handleSubscriptionUpdate(
     .update({
       plan,
       status,
-      current_period_end: new Date(sub.current_period_end * 1000).toISOString(),
+      current_period_end: new Date((sub.items.data[0]?.current_period_end ?? 0) * 1000).toISOString(),
     })
     .eq("stripe_subscription_id", sub.id);
 }

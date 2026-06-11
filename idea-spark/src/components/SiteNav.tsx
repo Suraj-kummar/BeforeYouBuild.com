@@ -14,8 +14,13 @@ export function SiteNav() {
     { to: "/login", hash: "", label: "Login" },
   ];
 
+  const isActive = (linkTo: string) => {
+    if (linkTo === "/") return false; // "How it works" is a hash link, never "active"
+    return path === linkTo || path.startsWith(linkTo + "/");
+  };
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 glass">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 glass print:hidden">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
         {/* Logo */}
         <Link to="/" className="flex items-center">
@@ -34,13 +39,17 @@ export function SiteNav() {
               key={link.label}
               to={link.to}
               hash={link.hash || undefined}
-              className={`transition-colors hover:text-foreground ${
-                path === link.to && link.to !== "/"
-                  ? "text-foreground font-medium"
+              className={`relative pb-[2px] transition-colors hover:text-foreground ${
+                isActive(link.to)
+                  ? "text-foreground font-semibold"
                   : "text-muted-foreground"
               }`}
             >
               {link.label}
+              {/* Active underline indicator */}
+              {isActive(link.to) && (
+                <span className="absolute -bottom-[19px] left-0 right-0 h-[2px] bg-gradient-emerald rounded-full" />
+              )}
             </Link>
           ))}
         </nav>
@@ -49,7 +58,11 @@ export function SiteNav() {
         <div className="flex items-center gap-3">
           <Link
             to="/app"
-            className="hidden md:inline-flex items-center gap-2 rounded-lg bg-gradient-emerald px-4 py-2 text-sm font-semibold text-background shadow-glow-sm hover:opacity-90 transition-all hover:shadow-glow"
+            className={`hidden md:inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-all ${
+              path === "/app"
+                ? "bg-primary/15 border border-primary/40 text-primary"
+                : "bg-gradient-emerald text-background shadow-glow-sm hover:opacity-90 hover:shadow-glow"
+            }`}
           >
             Validate Idea
           </Link>
@@ -65,25 +78,34 @@ export function SiteNav() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-border/40 bg-surface/95 backdrop-blur px-5 py-4 space-y-3">
+        <div className="md:hidden border-t border-border/40 bg-surface/95 backdrop-blur px-5 py-4 space-y-1">
           {navLinks.map((link) => (
             <Link
               key={link.label}
               to={link.to}
               hash={link.hash || undefined}
               onClick={() => setMobileOpen(false)}
-              className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className={`flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm transition-colors ${
+                isActive(link.to)
+                  ? "bg-primary/10 text-primary font-semibold"
+                  : "text-muted-foreground hover:text-foreground hover:bg-surface-elevated"
+              }`}
             >
+              {isActive(link.to) && (
+                <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+              )}
               {link.label}
             </Link>
           ))}
-          <Link
-            to="/app"
-            onClick={() => setMobileOpen(false)}
-            className="block w-full rounded-lg bg-gradient-emerald px-4 py-2.5 text-center text-sm font-semibold text-background shadow-glow-sm"
-          >
-            Validate Idea →
-          </Link>
+          <div className="pt-2 border-t border-border/40 mt-2">
+            <Link
+              to="/app"
+              onClick={() => setMobileOpen(false)}
+              className="block w-full rounded-lg bg-gradient-emerald px-4 py-2.5 text-center text-sm font-semibold text-background shadow-glow-sm"
+            >
+              Validate Idea →
+            </Link>
+          </div>
         </div>
       )}
     </header>

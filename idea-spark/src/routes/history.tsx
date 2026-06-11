@@ -26,18 +26,25 @@ function HistoryPage() {
   const [loggedIn, setLoggedIn] = useState(false);
   const { isPaid, isLoading: subLoading } = useSubscription();
 
+  // Step 1: Resolve auth (fast)
   useEffect(() => {
-    supabase.auth.getSession().then(async ({ data }) => {
+    supabase.auth.getSession().then(({ data }) => {
       const uid = data.session?.user?.id ?? null;
       setUserId(uid);
       setLoggedIn(!!uid);
-      if (uid) {
-        const list = await getUserReports(uid, isPaid ? 30 : 5);
-        setReports(list);
-      }
+      if (!uid) setLoading(false);
+    });
+  }, []);
+
+  // Step 2: Fetch reports only after BOTH userId AND subscription are known
+  useEffect(() => {
+    if (!userId || subLoading) return;
+    setLoading(true);
+    getUserReports(userId, isPaid ? 30 : 5).then((list) => {
+      setReports(list);
       setLoading(false);
     });
-  }, [isPaid]);
+  }, [userId, isPaid, subLoading]);
 
   // Not logged in
   if (!loading && !loggedIn) {

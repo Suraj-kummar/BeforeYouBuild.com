@@ -15,11 +15,12 @@
  *   - customer.subscription.deleted
  */
 
+// @ts-ignore — @tanstack/react-start/api resolves at runtime via Vite
 import { createAPIFileRoute } from "@tanstack/react-start/api";
 import { handleStripeWebhook } from "@/lib/stripe";
 
 export const APIRoute = createAPIFileRoute("/api/stripe-webhook")({
-  POST: async ({ request }) => {
+  POST: async ({ request }: { request: Request }) => {
     const signature = request.headers.get("stripe-signature");
 
     if (!signature) {

@@ -33,6 +33,10 @@ function SharedReportPage() {
   const [copied, setCopied] = useState(false);
   const { isPaid } = useSubscription();
 
+  const handleExportPDF = () => {
+    window.print();
+  };
+
   useEffect(() => {
     getReportById(id).then((data) => {
       if (!data) setNotFound(true);
@@ -82,7 +86,7 @@ function SharedReportPage() {
       <SiteNav />
       <main className="mx-auto w-full max-w-4xl px-5 py-12 flex-1 space-y-6">
         {/* Back + actions */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between print:hidden">
           <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
             <ArrowLeft className="h-4 w-4" /> BeforeYouBuild
           </Link>
@@ -95,7 +99,10 @@ function SharedReportPage() {
               {copied ? "Copied!" : "Share"}
             </button>
             {isPaid && (
-              <button className="inline-flex items-center gap-2 rounded-lg border border-border/60 bg-surface px-3 py-2 text-xs font-medium hover:border-primary/30 transition-colors">
+              <button
+                onClick={handleExportPDF}
+                className="inline-flex items-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-3 py-2 text-xs font-medium text-primary hover:bg-primary/20 transition-colors"
+              >
                 <Download className="h-3.5 w-3.5" /> Export PDF
               </button>
             )}
@@ -292,7 +299,7 @@ export function ReportContent({
 
       {/* UPGRADE CTA for free users */}
       {!isPaid && (
-        <div className="rounded-2xl border border-primary/30 bg-primary/5 p-8 text-center shadow-glow">
+        <div className="upgrade-cta-block rounded-2xl border border-primary/30 bg-primary/5 p-8 text-center shadow-glow print:hidden">
           <div className="flex justify-center mb-4">
             <div className="h-14 w-14 rounded-2xl bg-gradient-emerald flex items-center justify-center shadow-glow">
               <Zap className="h-7 w-7 text-background" />

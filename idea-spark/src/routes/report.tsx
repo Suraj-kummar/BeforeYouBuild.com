@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Share2, Check, ArrowLeft, Download, TrendingUp } from "lucide-react";
+import { Share2, Check, ArrowLeft, Download, TrendingUp, FlaskConical } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ReportContent } from "@/routes/report.$id";
@@ -78,6 +78,7 @@ function ReportPage() {
   const [copied, setCopied] = useState(false);
   const [idea, setIdea] = useState("");
   const [shareUrl, setShareUrl] = useState<string | null>(null);
+  const [isDemo, setIsDemo] = useState(false);
   const { isPaid } = useSubscription();
 
   useEffect(() => {
@@ -93,9 +94,13 @@ function ReportPage() {
 
     if (raw) {
       try { setReport(JSON.parse(raw)); }
-      catch { setReport(DEMO_REPORT); }
+      catch {
+        setReport(DEMO_REPORT);
+        setIsDemo(true);
+      }
     } else {
       setReport(DEMO_REPORT);
+      setIsDemo(true);
     }
   }, []);
 
@@ -116,13 +121,34 @@ function ReportPage() {
     );
   }
 
+  const handleExportPDF = () => {
+    window.print();
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <SiteNav />
       <main className="mx-auto w-full max-w-4xl px-5 py-12 flex-1 space-y-6">
 
+        {/* Demo mode banner */}
+        {isDemo && (
+          <div className="rounded-xl border border-warning/30 bg-warning/10 px-4 py-3 flex items-center gap-3 print:hidden">
+            <FlaskConical className="h-4 w-4 text-warning shrink-0" />
+            <div className="flex-1 min-w-0">
+              <span className="text-sm font-semibold text-warning">Demo report</span>
+              <span className="text-sm text-warning/80 ml-2">This is a sample validation — not your real idea.</span>
+            </div>
+            <Link
+              to="/app"
+              className="shrink-0 text-xs font-semibold text-warning hover:underline"
+            >
+              Validate your idea →
+            </Link>
+          </div>
+        )}
+
         {/* Back + actions */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between print:hidden">
           <button
             onClick={() => navigate({ to: "/app" })}
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -138,7 +164,10 @@ function ReportPage() {
               {copied ? "Link copied!" : "Share report"}
             </button>
             {isPaid && (
-              <button className="inline-flex items-center gap-2 rounded-lg border border-border/60 bg-surface px-3 py-2 text-xs font-medium hover:border-primary/30 transition-colors">
+              <button
+                onClick={handleExportPDF}
+                className="inline-flex items-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-3 py-2 text-xs font-medium text-primary hover:bg-primary/20 transition-colors"
+              >
                 <Download className="h-3.5 w-3.5" /> Export PDF
               </button>
             )}
