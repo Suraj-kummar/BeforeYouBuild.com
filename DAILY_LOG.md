@@ -43,3 +43,4 @@
 [41] chore: split styles.css into component-level modules
 [42] fix: sanitize user input before storing in Supabase
 [43] feat: display subscription status in profile menu
+[44] docs: add environment variable descriptions to README
