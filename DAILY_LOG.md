@@ -35,3 +35,4 @@
 [33] style: polish glassmorphism card styles
 [34] fix: handle expired Stripe sessions gracefully
 [35] chore: add ESLint rule for no-unused-vars
+[36] feat: persist scroll position on report page refresh
