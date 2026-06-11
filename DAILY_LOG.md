@@ -26,3 +26,4 @@
 [24] feat: show success toast after subscription upgrade
 [25] docs: add architecture diagram to README
 [26] fix: guard against null user in history route
+[27] style: increase font weight for report headings
