@@ -12,3 +12,4 @@
 [10] fix: correct Supabase RLS policy for history table
 [11] docs: add inline comments to stripe.ts
 [12] feat: add fade-in animation to report sections
+[13] chore: update .env.example with new Stripe keys
