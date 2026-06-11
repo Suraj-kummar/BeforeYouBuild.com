@@ -51,3 +51,4 @@
 [49] fix: correct date formatting in history list
 [50] docs: add Stripe test card numbers to SETUP.md
 [51] style: improve skeleton loader animation timing
+[52] feat: add confirmation dialog before deleting history
