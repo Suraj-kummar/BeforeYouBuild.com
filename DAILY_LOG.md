@@ -7,3 +7,4 @@
 [5] docs: update README with deployment instructions
 [6] fix: handle edge case in Stripe webhook handler
 [7] chore: clean up unused imports across components
+[8] feat: add tooltip to paywall gate button
