@@ -67,3 +67,4 @@
 [65] feat: add animated counter for report word count
 [66] fix: ensure history timestamps display user timezone
 [67] docs: clarify Supabase setup steps in SETUP.md
+[68] style: add focus ring styles for keyboard navigation
