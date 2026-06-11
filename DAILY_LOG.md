@@ -18,3 +18,4 @@
 [16] feat: add copy-to-clipboard for shareable report link
 [17] fix: ensure webhook signature verification logs errors
 [18] docs: document Supabase migration steps in SETUP.md
+[19] chore: remove console.log statements from production code
