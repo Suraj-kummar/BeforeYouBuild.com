@@ -63,3 +63,4 @@
 [61] docs: add changelog to track version history
 [62] style: improve accessibility contrast ratios
 [63] fix: resolve memory leak in report polling hook
+[64] chore: clean up redundant CSS variables
