@@ -28,3 +28,4 @@
 [26] fix: guard against null user in history route
 [27] style: increase font weight for report headings
 [28] feat: lazy load report section images
+[29] chore: add .editorconfig for consistent formatting
