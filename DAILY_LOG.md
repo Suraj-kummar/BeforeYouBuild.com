@@ -14,3 +14,4 @@
 [12] feat: add fade-in animation to report sections
 [13] chore: update .env.example with new Stripe keys
 [14] fix: prevent duplicate history entries on reload
+[15] style: adjust spacing in SiteNav component
