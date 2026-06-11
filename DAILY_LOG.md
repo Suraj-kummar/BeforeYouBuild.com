@@ -49,3 +49,4 @@
 [47] chore: update Supabase client to v2 API
 [48] feat: add export-to-PDF button on report page
 [49] fix: correct date formatting in history list
+[50] docs: add Stripe test card numbers to SETUP.md
