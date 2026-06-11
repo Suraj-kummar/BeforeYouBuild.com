@@ -55,3 +55,4 @@
 [53] chore: configure prettier for consistent code style
 [54] fix: handle network timeout on AI report generation
 [55] docs: add screenshots to README
+[56] style: refine report section border radii
