@@ -23,3 +23,4 @@
 [21] style: add hover transitions to nav links
 [22] fix: resolve hydration mismatch in report route
 [23] chore: bump vite to latest patch version
+[24] feat: show success toast after subscription upgrade
