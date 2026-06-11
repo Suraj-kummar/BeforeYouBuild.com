@@ -56,3 +56,4 @@
 [54] fix: handle network timeout on AI report generation
 [55] docs: add screenshots to README
 [56] style: refine report section border radii
+[57] feat: add search/filter to report history page
