@@ -25,3 +25,4 @@
 [23] chore: bump vite to latest patch version
 [24] feat: show success toast after subscription upgrade
 [25] docs: add architecture diagram to README
+[26] fix: guard against null user in history route
