@@ -65,3 +65,4 @@
 [63] fix: resolve memory leak in report polling hook
 [64] chore: clean up redundant CSS variables
 [65] feat: add animated counter for report word count
+[66] fix: ensure history timestamps display user timezone
