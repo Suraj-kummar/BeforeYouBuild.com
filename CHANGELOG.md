@@ -69,3 +69,4 @@
 ## [2026-06-08] - style: improve mobile responsiveness of nav bar
 ## [2026-06-09] - feat: add loading skeleton for report page
 ## [2026-06-10] - fix: resolve TypeScript type errors in report component
+## [2026-06-11] - chore: update dependencies to latest versions
