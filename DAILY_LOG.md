@@ -22,3 +22,4 @@
 [20] feat: add 404 page for unknown report IDs
 [21] style: add hover transitions to nav links
 [22] fix: resolve hydration mismatch in report route
+[23] chore: bump vite to latest patch version
