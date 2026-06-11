@@ -19,3 +19,4 @@
 [17] fix: ensure webhook signature verification logs errors
 [18] docs: document Supabase migration steps in SETUP.md
 [19] chore: remove console.log statements from production code
+[20] feat: add 404 page for unknown report IDs
