@@ -60,3 +60,4 @@
 [58] fix: prevent flash of unstyled content on load
 [59] chore: add husky pre-commit hook for linting
 [60] feat: show free vs premium feature comparison table
+[61] docs: add changelog to track version history
