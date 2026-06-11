@@ -24,3 +24,4 @@
 [22] fix: resolve hydration mismatch in report route
 [23] chore: bump vite to latest patch version
 [24] feat: show success toast after subscription upgrade
+[25] docs: add architecture diagram to README
