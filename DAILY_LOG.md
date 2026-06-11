@@ -21,3 +21,4 @@
 [19] chore: remove console.log statements from production code
 [20] feat: add 404 page for unknown report IDs
 [21] style: add hover transitions to nav links
+[22] fix: resolve hydration mismatch in report route
