@@ -68,3 +68,4 @@
 [66] fix: ensure history timestamps display user timezone
 [67] docs: clarify Supabase setup steps in SETUP.md
 [68] style: add focus ring styles for keyboard navigation
+[69] feat: add dark/light mode toggle to settings
