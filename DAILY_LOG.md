@@ -61,3 +61,4 @@
 [59] chore: add husky pre-commit hook for linting
 [60] feat: show free vs premium feature comparison table
 [61] docs: add changelog to track version history
+[62] style: improve accessibility contrast ratios
