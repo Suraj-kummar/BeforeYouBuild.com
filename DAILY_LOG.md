@@ -53,3 +53,4 @@
 [51] style: improve skeleton loader animation timing
 [52] feat: add confirmation dialog before deleting history
 [53] chore: configure prettier for consistent code style
+[54] fix: handle network timeout on AI report generation
