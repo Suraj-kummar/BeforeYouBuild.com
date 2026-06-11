@@ -47,3 +47,4 @@
 [45] style: add smooth scroll behavior to page
 [46] fix: resolve race condition in webhook processing
 [47] chore: update Supabase client to v2 API
+[48] feat: add export-to-PDF button on report page
