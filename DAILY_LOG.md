@@ -39,3 +39,4 @@
 [37] fix: resolve 401 error on unauthenticated API calls
 [38] docs: update contributing guidelines
 [39] style: refine button active states
+[40] feat: add keyboard shortcut to open report history
