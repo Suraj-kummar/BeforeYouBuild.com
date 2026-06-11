@@ -9,3 +9,4 @@
 [7] chore: clean up unused imports across components
 [8] feat: add tooltip to paywall gate button
 [9] style: refine color palette for dark mode consistency
+[10] fix: correct Supabase RLS policy for history table
