@@ -29,3 +29,4 @@
 [27] style: increase font weight for report headings
 [28] feat: lazy load report section images
 [29] chore: add .editorconfig for consistent formatting
+[30] fix: correct redirect after Stripe checkout success
