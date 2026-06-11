@@ -38,3 +38,4 @@
 [36] feat: persist scroll position on report page refresh
 [37] fix: resolve 401 error on unauthenticated API calls
 [38] docs: update contributing guidelines
+[39] style: refine button active states
