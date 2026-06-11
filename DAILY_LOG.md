@@ -40,3 +40,4 @@
 [38] docs: update contributing guidelines
 [39] style: refine button active states
 [40] feat: add keyboard shortcut to open report history
+[41] chore: split styles.css into component-level modules
