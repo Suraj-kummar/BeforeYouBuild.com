@@ -44,3 +44,4 @@
 [42] fix: sanitize user input before storing in Supabase
 [43] feat: display subscription status in profile menu
 [44] docs: add environment variable descriptions to README
+[45] style: add smooth scroll behavior to page
