@@ -42,3 +42,4 @@
 [40] feat: add keyboard shortcut to open report history
 [41] chore: split styles.css into component-level modules
 [42] fix: sanitize user input before storing in Supabase
+[43] feat: display subscription status in profile menu
