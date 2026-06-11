@@ -16,3 +16,4 @@
 [14] fix: prevent duplicate history entries on reload
 [15] style: adjust spacing in SiteNav component
 [16] feat: add copy-to-clipboard for shareable report link
+[17] fix: ensure webhook signature verification logs errors
