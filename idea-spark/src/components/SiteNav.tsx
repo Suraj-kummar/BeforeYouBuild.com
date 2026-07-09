@@ -1,11 +1,19 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function SiteNav() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const router = useRouterState();
   const path = router.location.pathname;
+
+  // Detect scroll for stronger glass effect
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { to: "/", hash: "how", label: "How it works" },
@@ -20,16 +28,34 @@ export function SiteNav() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 glass print:hidden">
+    <header
+      className={`sticky top-0 z-50 w-full border-b border-border/40 glass print:hidden transition-all duration-300 ${
+        scrolled ? "nav-scrolled" : ""
+      }`}
+    >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
         {/* Logo */}
-        <Link to="/" className="flex items-center">
+        <Link to="/" className="flex items-center group">
           <img
             src="/logo.png"
             alt="BeforeYouBuild"
-            className="h-8 w-auto object-contain"
+            className="h-8 w-auto object-contain transition-opacity duration-200 group-hover:opacity-80"
             style={{ maxWidth: 200 }}
+            onError={(e) => {
+              // Fallback if logo fails to load
+              (e.currentTarget as HTMLImageElement).style.display = "none";
+              const next = e.currentTarget.nextElementSibling as HTMLElement;
+              if (next) next.style.display = "flex";
+            }}
           />
+          {/* Text fallback */}
+          <span
+            className="hidden items-center gap-1.5 font-bold text-base tracking-tight"
+            style={{ display: "none" }}
+          >
+            <span className="text-foreground">BeforeYou</span>
+            <span className="text-primary">Build</span>
+          </span>
         </Link>
 
         {/* Desktop Nav */}
@@ -67,7 +93,7 @@ export function SiteNav() {
             Validate Idea
           </Link>
           <button
-            className="md:hidden grid h-9 w-9 place-items-center rounded-lg border border-border/60 text-muted-foreground hover:text-foreground transition-colors"
+            className="md:hidden grid h-9 w-9 place-items-center rounded-lg border border-border/60 text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
