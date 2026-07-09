@@ -130,6 +130,14 @@
   -webkit-backdrop-filter: blur(16px);
 }
 
+/* ─── Glassmorphism card ─── */
+@utility glass-card {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
 /* ─── Animations ─── */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
@@ -160,12 +168,62 @@
   to { width: 100%; }
 }
 
-@utility animate-float { animation: float 3s ease-in-out infinite; }
-@utility animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
-@utility animate-fade-up { animation: fade-up 0.5s ease-out forwards; }
-@utility animate-scale-in { animation: scale-in 0.4s ease-out forwards; }
-@utility animate-spin-slow { animation: spin-slow 3s linear infinite; }
-@utility animate-progress { animation: progress-bar 2s ease-in-out forwards; }
+/* ─── New keyframes ─── */
+@keyframes border-spin {
+  0%   { --angle: 0deg; }
+  100% { --angle: 360deg; }
+}
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes blob-drift {
+  0%, 100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; transform: translate(0, 0) scale(1); }
+  33%       { border-radius: 45% 55% 40% 60% / 60% 40% 55% 45%; transform: translate(20px, -15px) scale(1.03); }
+  66%       { border-radius: 55% 45% 60% 40% / 45% 55% 45% 55%; transform: translate(-10px, 10px) scale(0.98); }
+}
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes count-up-reveal {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes glow-pulse-border {
+  0%, 100% { border-color: rgba(16,185,129,0.3); box-shadow: 0 0 20px -4px rgba(16,185,129,0.2); }
+  50%       { border-color: rgba(52,211,153,0.6); box-shadow: 0 0 40px -4px rgba(16,185,129,0.45); }
+}
+@keyframes star-pop {
+  0%   { opacity: 0; transform: scale(0.4) rotate(-15deg); }
+  60%  { transform: scale(1.25) rotate(5deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+@keyframes bar-fill {
+  from { width: 0%; }
+  to   { width: var(--bar-target); }
+}
+@keyframes dot-grid-drift {
+  0%, 100% { background-position: 0 0; }
+  50%       { background-position: 20px 20px; }
+}
+
+/* ─── Utility classes for new animations ─── */
+@utility animate-float         { animation: float 3s ease-in-out infinite; }
+@utility animate-pulse-glow    { animation: pulse-glow 2s ease-in-out infinite; }
+@utility animate-fade-up       { animation: fade-up 0.5s ease-out forwards; }
+@utility animate-scale-in      { animation: scale-in 0.4s ease-out forwards; }
+@utility animate-spin-slow     { animation: spin-slow 3s linear infinite; }
+@utility animate-progress      { animation: progress-bar 2s ease-in-out forwards; }
+@utility animate-slide-in-left  { animation: slide-in-left 0.5s ease-out forwards; }
+@utility animate-slide-in-right { animation: slide-in-right 0.5s ease-out forwards; }
+@utility animate-blob          { animation: blob-drift 8s ease-in-out infinite; }
+@utility animate-ticker        { animation: ticker-scroll 28s linear infinite; }
+@utility animate-glow-border   { animation: glow-pulse-border 2.5s ease-in-out infinite; }
 
 /* Shimmer text */
 @utility text-shimmer {
@@ -182,16 +240,103 @@
   animation: progress-bar 1s ease-out forwards;
 }
 
+/* Score bar with CSS custom property target */
+.bar-fill-anim {
+  width: 0%;
+  animation: bar-fill 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* Stagger delays */
 @utility delay-100 { animation-delay: 100ms; }
 @utility delay-200 { animation-delay: 200ms; }
 @utility delay-300 { animation-delay: 300ms; }
 @utility delay-400 { animation-delay: 400ms; }
 @utility delay-500 { animation-delay: 500ms; }
+@utility delay-600 { animation-delay: 600ms; }
+@utility delay-700 { animation-delay: 700ms; }
+
+/* Terminal result card faint bg */
+.bg-primary\/8 { background-color: rgba(16, 185, 129, 0.08); }
+
+/* ─── Scroll reveal ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Star animation stagger */
+.star-anim {
+  opacity: 0;
+  animation: star-pop 0.35s ease-out forwards;
+}
+
+/* Dot grid hero background */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(16,185,129,0.18) 1px, transparent 1px);
+  background-size: 28px 28px;
+  animation: dot-grid-drift 12s ease-in-out infinite;
+}
+
+/* Rotating conic gradient border (CTA banner) */
+@property --cta-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes cta-border-spin {
+  to { --cta-angle: 360deg; }
+}
+.cta-spin-border {
+  position: relative;
+  border: none !important;
+}
+.cta-spin-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(from var(--cta-angle), transparent 0%, #10b981 20%, #34d399 40%, transparent 60%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: cta-border-spin 4s linear infinite;
+  z-index: 0;
+}
 
 /* Noise texture overlay */
 @utility noise {
   position: relative;
+}
+
+/* Nav scrolled state */
+.nav-scrolled {
+  background: rgba(10,10,10,0.92) !important;
+  box-shadow: 0 1px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(16,185,129,0.08);
 }
 
 /* ─── Print / PDF Export ─── */
@@ -227,18 +372,15 @@
   }
 
   /* ── Reveal ALL locked/paywalled sections ── */
-  /* The lock overlay uses backdrop-blur-sm + absolute positioning */
   [class*="backdrop-blur"] {
     display: none !important;
   }
-  /* The blur on the fake content behind the paywall */
   [class*="blur-sm"] {
     filter: none !important;
     pointer-events: auto !important;
     user-select: auto !important;
     opacity: 1 !important;
   }
-  /* Hide the upgrade CTA block at the bottom of reports */
   [class*="rounded-2xl"][class*="text-center"] > [class*="Zap"],
   .upgrade-cta-block {
     display: none !important;
@@ -249,7 +391,6 @@
     size: A4;
     margin: 1.8cm 2cm 2.5cm 2cm;
   }
-  /* Polyfill for @bottom-center (rendered in Chrome) */
   body::after {
     content: "Validated by BeforeYouBuild.com  ·  AI-powered market validation  ·  beforeyoubuild.com";
     display: block;
@@ -261,31 +402,26 @@
     margin-top: 2rem;
   }
 
-  /* ── Layout: full-width content ── */
   main {
     max-width: 100% !important;
     padding: 0 !important;
     margin: 0 !important;
   }
 
-  /* ── Section breaks ── */
   section {
     break-inside: avoid;
     page-break-inside: avoid;
     margin-bottom: 0.75rem;
   }
 
-  /* First section (verdict hero) on its own area */
   section#verdict {
     break-after: avoid;
   }
 
-  /* Score cards: keep all 4 on one line */
   section.grid.grid-cols-2 {
     break-inside: avoid;
   }
 
-  /* ── Remove all decorative effects ── */
   * {
     box-shadow: none !important;
     text-shadow: none !important;
@@ -295,7 +431,6 @@
     -webkit-backdrop-filter: none !important;
   }
 
-  /* ── Gradient text → solid color fallback ── */
   .text-gradient-emerald,
   .text-shimmer,
   [class*="text-gradient"] {
@@ -305,20 +440,17 @@
     color: #059669 !important;
   }
 
-  /* ── Gradient backgrounds → flat color ── */
   .bg-gradient-emerald,
   [class*="bg-gradient"] {
     background: #059669 !important;
     color: #ffffff !important;
   }
 
-  /* ── Dark surfaces → white/light grey ── */
   [class*="bg-surface"],
   [class*="bg-background"] {
     background-color: #f8f8f8 !important;
   }
 
-  /* ── Borders visible on white paper ── */
   [class*="border-border"] {
     border-color: rgba(0,0,0,0.15) !important;
   }
@@ -326,24 +458,20 @@
     border-color: rgba(5,150,105,0.4) !important;
   }
 
-  /* ── Score bars ── */
   .score-bar-fill {
     animation: none !important;
     width: attr(style) !important;
   }
 
-  /* ── Glass nav elements hidden ── */
   .glass {
     display: none !important;
   }
 
-  /* ── Ensure links are readable ── */
   a {
     color: #059669 !important;
     text-decoration: none !important;
   }
 
-  /* ── Competitor threat badges ── */
   [class*="text-destructive"] { color: #dc2626 !important; }
   [class*="text-warning"] { color: #d97706 !important; }
   [class*="text-primary"] { color: #059669 !important; }
