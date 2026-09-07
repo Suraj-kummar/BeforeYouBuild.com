@@ -27,6 +27,7 @@ const DEFAULT_FREE: Subscription = {
 };
 
 export function useSubscription(): UseSubscriptionResult {
+  // Cache key for memoization
   const [subscription, setSubscription] = useState<Subscription | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [userId, setUserId] = useState<string | null>(null);
@@ -85,3 +86,4 @@ export function useSubscription(): UseSubscriptionResult {
     },
   };
 }
+

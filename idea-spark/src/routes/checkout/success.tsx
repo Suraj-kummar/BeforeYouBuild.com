@@ -1,3 +1,4 @@
+﻿// Checkout success page - confirms subscription and redirects to app
 import { createFileRoute, Link, useSearch } from "@tanstack/react-router";
 import { CheckCircle2, ArrowRight, Sparkles, Zap } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -7,7 +8,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 export const Route = createFileRoute("/checkout/success")({
   head: () => ({
     meta: [
-      { title: "You're on Pro! — BeforeYouBuild" },
+      { title: "You're on Pro! â€” BeforeYouBuild" },
       { name: "robots", content: "noindex" },
     ],
   }),
@@ -74,7 +75,7 @@ function CheckoutSuccess() {
           {/* Heading */}
           <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-4">
             You&apos;re on{" "}
-            <span className="text-gradient-emerald">Pro! 🎉</span>
+            <span className="text-gradient-emerald">Pro! ðŸŽ‰</span>
           </h1>
           <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
             Unlimited validations, PDF exports, and priority AI are now unlocked.
@@ -88,11 +89,11 @@ function CheckoutSuccess() {
             </p>
             <ul className="space-y-3 text-sm">
               {[
-                "✅ Unlimited idea validations",
-                "✅ PDF export for every report",
-                "✅ Saved report history (30 reports)",
-                "✅ Priority Claude AI model",
-                "✅ Email support",
+                "âœ… Unlimited idea validations",
+                "âœ… PDF export for every report",
+                "âœ… Saved report history (30 reports)",
+                "âœ… Priority Claude AI model",
+                "âœ… Email support",
               ].map((item) => (
                 <li key={item} className="text-foreground">
                   {item}
@@ -112,7 +113,7 @@ function CheckoutSuccess() {
 
           {session_id && (
             <p className="mt-4 text-xs text-muted-foreground/50">
-              Order ID: {session_id.slice(0, 20)}…
+              Order ID: {session_id.slice(0, 20)}â€¦
             </p>
           )}
         </div>
@@ -133,3 +134,4 @@ function CheckoutSuccess() {
     </div>
   );
 }
+

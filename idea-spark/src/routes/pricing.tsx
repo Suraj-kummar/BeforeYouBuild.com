@@ -1,11 +1,7 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { Check, Zap, Users, Globe, ArrowRight, Loader2, Crown } from "lucide-react";
-import { useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Check, Zap, Users, Globe, ArrowRight } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
-import { useSubscription } from "@/hooks/useSubscription";
-import { startCheckout } from "@/lib/checkout";
-import { supabase } from "@/lib/supabase";
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
@@ -36,7 +32,7 @@ const TIERS = [
     ],
     missing: ["PDF export", "Saved history", "Priority AI"],
     cta: "Start free",
-    plan: "free" as const,
+    ctaTo: "/app" as const,
     featured: false,
     badge: null,
   },
@@ -55,7 +51,7 @@ const TIERS = [
     ],
     missing: ["Team access", "API access"],
     cta: "Go Pro",
-    plan: "pro" as const,
+    ctaTo: "/login" as const,
     featured: true,
     badge: "Most Popular",
   },
@@ -73,8 +69,8 @@ const TIERS = [
       "Custom branding on reports",
     ],
     missing: [],
-    cta: "Get Startup",
-    plan: "startup" as const,
+    cta: "Contact us",
+    ctaTo: "/login" as const,
     featured: false,
     badge: null,
   },
@@ -100,8 +96,6 @@ const FAQ = [
 ];
 
 function Pricing() {
-  const { plan: currentPlan, isLoading: subLoading } = useSubscription();
-
   return (
     <div className="min-h-screen flex flex-col">
       <SiteNav />
@@ -114,17 +108,6 @@ function Pricing() {
             Built by a student, priced for founders 🇮🇳
           </div>
         </div>
-
-        {/* Current plan badge */}
-        {!subLoading && currentPlan !== "free" && (
-          <div className="flex justify-center mb-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-sm font-semibold text-primary shadow-glow-sm">
-              <Crown className="h-4 w-4" />
-              You&apos;re on the{" "}
-              <span className="capitalize">{currentPlan}</span> plan
-            </div>
-          </div>
-        )}
 
         {/* Header */}
         <div className="text-center mb-14">
@@ -141,11 +124,7 @@ function Pricing() {
         {/* Pricing cards */}
         <div className="grid gap-6 md:grid-cols-3 items-start">
           {TIERS.map((tier) => (
-            <PricingCard
-              key={tier.name}
-              tier={tier}
-              currentPlan={currentPlan}
-            />
+            <PricingCard key={tier.name} tier={tier} />
           ))}
         </div>
 
@@ -224,64 +203,11 @@ function Pricing() {
   );
 }
 
-// ── PricingCard ───────────────────────────────────────────────────────────────
-
 function PricingCard({
   tier,
-  currentPlan,
 }: {
   tier: (typeof TIERS)[number];
-  currentPlan: string;
 }) {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
-
-  const isCurrentPlan = currentPlan === tier.plan;
-
-  const handleUpgrade = async () => {
-    // Free tier — just go to app
-    if (tier.plan === "free") {
-      navigate({ to: "/app" });
-      return;
-    }
-
-    setLoading(true);
-    setError(null);
-
-    try {
-      // Check auth first
-      const { data: sessionData } = await supabase.auth.getSession();
-      if (!sessionData.session) {
-        // Not logged in — go to login first
-        navigate({ to: "/login" });
-        return;
-      }
-
-      const { user } = sessionData.session;
-
-      const result = await startCheckout({
-        data: {
-          userId: user.id,
-          email: user.email ?? "",
-          plan: tier.plan as "pro" | "startup",
-        },
-      });
-
-      // Redirect browser to Stripe Checkout
-      window.location.href = result.url;
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : "Something went wrong";
-      // Check if it's a config error (keys not set yet)
-      if (msg.includes("not configured") || msg.includes("placeholder")) {
-        setError("Stripe keys not set yet — add them to .env.local to enable payments.");
-      } else {
-        setError(msg);
-      }
-      setLoading(false);
-    }
-  };
-
   return (
     <div
       className={`relative rounded-2xl border p-7 shadow-card transition-all duration-300 hover:-translate-y-1 ${
@@ -293,13 +219,6 @@ function PricingCard({
       {tier.badge && (
         <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-gradient-emerald px-4 py-1 text-xs font-bold text-background shadow-glow-sm">
           {tier.badge}
-        </span>
-      )}
-
-      {/* Current plan indicator */}
-      {isCurrentPlan && (
-        <span className="absolute -top-3.5 right-4 rounded-full bg-primary/20 border border-primary/40 px-3 py-1 text-xs font-semibold text-primary">
-          Your plan
         </span>
       )}
 
@@ -335,39 +254,16 @@ function PricingCard({
         ))}
       </ul>
 
-      {error && (
-        <p className="mt-4 text-xs text-destructive bg-destructive/10 rounded-lg px-3 py-2">
-          ⚠️ {error}
-        </p>
-      )}
-
-      <button
-        id={`upgrade-${tier.plan}-btn`}
-        onClick={handleUpgrade}
-        disabled={loading || isCurrentPlan}
-        className={`mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition-all disabled:cursor-not-allowed ${
-          isCurrentPlan
-            ? "border border-primary/30 bg-primary/10 text-primary cursor-default"
-            : tier.featured
-            ? "bg-gradient-emerald text-background shadow-glow-sm hover:opacity-90 hover:shadow-glow disabled:opacity-50"
-            : "border border-border/60 bg-background hover:border-primary/40 hover:text-primary disabled:opacity-50"
+      <Link
+        to={tier.ctaTo}
+        className={`mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${
+          tier.featured
+            ? "bg-gradient-emerald text-background shadow-glow-sm hover:opacity-90 hover:shadow-glow"
+            : "border border-border/60 bg-background hover:border-primary/40 hover:text-primary"
         }`}
       >
-        {loading ? (
-          <>
-            <Loader2 className="h-4 w-4 animate-spin" />
-            Redirecting…
-          </>
-        ) : isCurrentPlan ? (
-          <>
-            <Check className="h-4 w-4" /> Current plan
-          </>
-        ) : (
-          <>
-            {tier.cta} <ArrowRight className="h-4 w-4" />
-          </>
-        )}
-      </button>
+        {tier.cta} <ArrowRight className="h-4 w-4" />
+      </Link>
     </div>
   );
 }

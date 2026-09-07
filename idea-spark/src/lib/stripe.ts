@@ -1,4 +1,4 @@
-/**
+﻿/**
  * src/lib/stripe.ts
  *
  * Server-side Stripe helpers:
@@ -225,3 +225,4 @@ async function handleSubscriptionDeleted(
     .update({ plan: "free", status: "canceled" })
     .eq("stripe_subscription_id", sub.id);
 }
+

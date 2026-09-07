@@ -1,3 +1,4 @@
+﻿// Stripe webhook handler - verifies signature, processes subscription events
 /**
  * src/routes/api/stripe-webhook.ts
  *
@@ -6,7 +7,7 @@
  * Receives Stripe webhook events, verifies the signature, and updates
  * the subscriptions table in Supabase accordingly.
  *
- * Register this URL in your Stripe Dashboard → Webhooks:
+ * Register this URL in your Stripe Dashboard â†’ Webhooks:
  *   https://your-domain.com/api/stripe-webhook
  *
  * Events to enable:
@@ -15,7 +16,7 @@
  *   - customer.subscription.deleted
  */
 
-// @ts-ignore — @tanstack/react-start/api resolves at runtime via Vite
+// @ts-ignore â€” @tanstack/react-start/api resolves at runtime via Vite
 import { createAPIFileRoute } from "@tanstack/react-start/api";
 import { handleStripeWebhook } from "@/lib/stripe";
 
@@ -30,7 +31,7 @@ export const APIRoute = createAPIFileRoute("/api/stripe-webhook")({
       );
     }
 
-    // Read raw body — IMPORTANT: do NOT parse as JSON first, Stripe needs the raw bytes
+    // Read raw body â€” IMPORTANT: do NOT parse as JSON first, Stripe needs the raw bytes
     const body = await request.text();
 
     try {
@@ -49,3 +50,4 @@ export const APIRoute = createAPIFileRoute("/api/stripe-webhook")({
     }
   },
 });
+
