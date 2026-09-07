@@ -1,3 +1,4 @@
+﻿// Checkout cancel page - shows friendly message and retry option
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { XCircle, ArrowLeft, ArrowRight } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
@@ -6,7 +7,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 export const Route = createFileRoute("/checkout/cancel")({
   head: () => ({
     meta: [
-      { title: "Checkout Cancelled — BeforeYouBuild" },
+      { title: "Checkout Cancelled â€” BeforeYouBuild" },
       { name: "robots", content: "noindex" },
     ],
   }),
@@ -29,7 +30,7 @@ function CheckoutCancel() {
 
           {/* Heading */}
           <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-4">
-            No worries — you&apos;re still on Free
+            No worries â€” you&apos;re still on Free
           </h1>
           <p className="text-muted-foreground text-base mb-8 leading-relaxed max-w-sm mx-auto">
             You cancelled before completing payment. Your account is unchanged and
@@ -49,12 +50,12 @@ function CheckoutCancel() {
                 "Priority Claude AI model",
               ].map((item) => (
                 <li key={item} className="flex items-center gap-2">
-                  <span className="text-primary">→</span> {item}
+                  <span className="text-primary">â†’</span> {item}
                 </li>
               ))}
             </ul>
             <p className="mt-4 text-xs text-muted-foreground/60">
-              Only ₹499/month. Cancel anytime.
+              Only â‚¹499/month. Cancel anytime.
             </p>
           </div>
 
@@ -82,3 +83,4 @@ function CheckoutCancel() {
     </div>
   );
 }
+
