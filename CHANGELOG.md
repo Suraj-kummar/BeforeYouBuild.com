@@ -1,4 +1,25 @@
-﻿# Changelog
+﻿## [1.1.0] - 2026-09-07
+
+### Added
+- .editorconfig for consistent cross-editor formatting
+- Stripe test card numbers section to SETUP.md
+- Module-level header comments to webhook and checkout routes
+- useSubscription hook auth re-fetch stability comments
+
+### Changed
+- Updated package.json dependencies to latest versions
+- Refreshed all route pages: index, app, login, pricing, report
+- Improved SiteNav scroll-state detection and glass blur effect
+- SiteFooter newsletter signup with animated success state
+- Updated Supabase client to v2 API patterns
+- Refreshed global styles with new keyframes and CSS variables
+- Updated vite, tsconfig, wrangler, eslint and prettier configs
+
+### Fixed
+- Encoding artifacts cleaned from stripe.ts comments
+- Stripe webhook handler error logging improved
+
+# Changelog
 
 ## [2026-04-03] - chore: update GitHub Actions workflow for deployment
 ## [2026-04-04] - feat: add dark/light mode toggle to settings
@@ -70,3 +91,4 @@
 ## [2026-06-09] - feat: add loading skeleton for report page
 ## [2026-06-10] - fix: resolve TypeScript type errors in report component
 ## [2026-06-11] - chore: update dependencies to latest versions
+
