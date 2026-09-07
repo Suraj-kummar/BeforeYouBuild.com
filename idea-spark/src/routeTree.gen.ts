@@ -12,12 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ReportRouteImport } from './routes/report'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as HistoryRouteImport } from './routes/history'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ReportIdRouteImport } from './routes/report.$id'
-import { Route as CheckoutSuccessRouteImport } from './routes/checkout/success'
-import { Route as CheckoutCancelRouteImport } from './routes/checkout/cancel'
 
 const ReportRoute = ReportRouteImport.update({
   id: '/report',
@@ -34,11 +30,6 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HistoryRoute = HistoryRouteImport.update({
-  id: '/history',
-  path: '/history',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AppRoute = AppRouteImport.update({
   id: '/app',
   path: '/app',
@@ -49,101 +40,43 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ReportIdRoute = ReportIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => ReportRoute,
-} as any)
-const CheckoutSuccessRoute = CheckoutSuccessRouteImport.update({
-  id: '/checkout/success',
-  path: '/checkout/success',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CheckoutCancelRoute = CheckoutCancelRouteImport.update({
-  id: '/checkout/cancel',
-  path: '/checkout/cancel',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRoute
-  '/history': typeof HistoryRoute
   '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
-  '/report': typeof ReportRouteWithChildren
-  '/checkout/cancel': typeof CheckoutCancelRoute
-  '/checkout/success': typeof CheckoutSuccessRoute
-  '/report/$id': typeof ReportIdRoute
+  '/report': typeof ReportRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app': typeof AppRoute
-  '/history': typeof HistoryRoute
   '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
-  '/report': typeof ReportRouteWithChildren
-  '/checkout/cancel': typeof CheckoutCancelRoute
-  '/checkout/success': typeof CheckoutSuccessRoute
-  '/report/$id': typeof ReportIdRoute
+  '/report': typeof ReportRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRoute
-  '/history': typeof HistoryRoute
   '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
-  '/report': typeof ReportRouteWithChildren
-  '/checkout/cancel': typeof CheckoutCancelRoute
-  '/checkout/success': typeof CheckoutSuccessRoute
-  '/report/$id': typeof ReportIdRoute
+  '/report': typeof ReportRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/app'
-    | '/history'
-    | '/login'
-    | '/pricing'
-    | '/report'
-    | '/checkout/cancel'
-    | '/checkout/success'
-    | '/report/$id'
+  fullPaths: '/' | '/app' | '/login' | '/pricing' | '/report'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/app'
-    | '/history'
-    | '/login'
-    | '/pricing'
-    | '/report'
-    | '/checkout/cancel'
-    | '/checkout/success'
-    | '/report/$id'
-  id:
-    | '__root__'
-    | '/'
-    | '/app'
-    | '/history'
-    | '/login'
-    | '/pricing'
-    | '/report'
-    | '/checkout/cancel'
-    | '/checkout/success'
-    | '/report/$id'
+  to: '/' | '/app' | '/login' | '/pricing' | '/report'
+  id: '__root__' | '/' | '/app' | '/login' | '/pricing' | '/report'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRoute
-  HistoryRoute: typeof HistoryRoute
   LoginRoute: typeof LoginRoute
   PricingRoute: typeof PricingRoute
-  ReportRoute: typeof ReportRouteWithChildren
-  CheckoutCancelRoute: typeof CheckoutCancelRoute
-  CheckoutSuccessRoute: typeof CheckoutSuccessRoute
+  ReportRoute: typeof ReportRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -169,13 +102,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/history': {
-      id: '/history'
-      path: '/history'
-      fullPath: '/history'
-      preLoaderRoute: typeof HistoryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/app': {
       id: '/app'
       path: '/app'
@@ -190,50 +116,15 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/report/$id': {
-      id: '/report/$id'
-      path: '/$id'
-      fullPath: '/report/$id'
-      preLoaderRoute: typeof ReportIdRouteImport
-      parentRoute: typeof ReportRoute
-    }
-    '/checkout/success': {
-      id: '/checkout/success'
-      path: '/checkout/success'
-      fullPath: '/checkout/success'
-      preLoaderRoute: typeof CheckoutSuccessRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/checkout/cancel': {
-      id: '/checkout/cancel'
-      path: '/checkout/cancel'
-      fullPath: '/checkout/cancel'
-      preLoaderRoute: typeof CheckoutCancelRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
-
-interface ReportRouteChildren {
-  ReportIdRoute: typeof ReportIdRoute
-}
-
-const ReportRouteChildren: ReportRouteChildren = {
-  ReportIdRoute: ReportIdRoute,
-}
-
-const ReportRouteWithChildren =
-  ReportRoute._addFileChildren(ReportRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRoute,
-  HistoryRoute: HistoryRoute,
   LoginRoute: LoginRoute,
   PricingRoute: PricingRoute,
-  ReportRoute: ReportRouteWithChildren,
-  CheckoutCancelRoute: CheckoutCancelRoute,
-  CheckoutSuccessRoute: CheckoutSuccessRoute,
+  ReportRoute: ReportRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
